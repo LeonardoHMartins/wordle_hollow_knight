@@ -26,7 +26,7 @@ class _ClassicPageState extends State<ClassicPage> {
           children: [
             Positioned.fill(
               child: Image.network(
-                'assets/images/hollow_knight.jpg',
+                'https://firebasestorage.googleapis.com/v0/b/wordle-hk.appspot.com/o/hollow_knight.jpg?alt=media&token=6fa27b5e-5eff-4d7b-afb6-bb7fc577bc83',
                 fit: BoxFit.cover,
                 opacity: const AlwaysStoppedAnimation(0.3),
                 colorBlendMode: BlendMode.dstOver,

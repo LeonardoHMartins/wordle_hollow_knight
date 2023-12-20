@@ -20,13 +20,17 @@ class _HomePageState extends State<HomePage> {
       body: Stack(
         children: [
           Positioned.fill(
-            child: Image.network(
-              'assets/images/hollow_knight.jpg',
-              fit: BoxFit.cover,
-              opacity: const AlwaysStoppedAnimation(0.3),
-              colorBlendMode: BlendMode.dstOver,
-              color: AppColors.grey800,
-            ),
+            child: Image.network('https://firebasestorage.googleapis.com/v0/b/wordle-hk.appspot.com/o/hollow_knight.jpg?alt=media&token=6fa27b5e-5eff-4d7b-afb6-bb7fc577bc83',
+                fit: BoxFit.cover,
+                opacity: const AlwaysStoppedAnimation(0.3),
+                colorBlendMode: BlendMode.dstOver,
+                color: AppColors.grey800,
+                headers: const {
+                  "Access-Control-Allow-Origin": "*",
+                  "Access-Control-Allow-Credentials": "true",
+                  "Access-Control-Allow-Methods": "GET,HEAD,OPTIONS,POST,PUT",
+                  "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+                }),
           ),
           Center(
             child: SeparatedColumn(
