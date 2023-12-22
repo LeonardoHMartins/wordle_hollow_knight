@@ -2,17 +2,18 @@ import 'package:flextras/flextras.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:teste_firebase_web/core/common/constants/app_colors.dart';
+import 'package:teste_firebase_web/core/shared/features/characters/domain/entities/character_entity.dart';
 
 class ClassicGame extends StatefulWidget {
-  const ClassicGame({super.key});
+  const ClassicGame({super.key, required this.characters, this.characterToday});
+  final List<CharacterEntity> characters;
+  final CharacterEntity? characterToday;
 
   @override
   State<ClassicGame> createState() => _ClassicGameState();
 }
 
 class _ClassicGameState extends State<ClassicGame> {
-  Map<String, dynamic> listPersonagem = {'personagem': 'iselda', 'genero': 'feminino', 'regiao': 'dirtmouth'};
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -62,43 +63,43 @@ class _ClassicGameState extends State<ClassicGame> {
           mainAxisAlignment: MainAxisAlignment.center,
           separatorBuilder: () => const Gap(5),
           children: [
-            SeparatedRow(
-              separatorBuilder: () => const Gap(5),
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(16),
-                    color: AppColors.secondary,
-                  ),
-                  width: 75,
-                  height: 75,
-                  child: const Center(
-                      child: Text(
-                    'Iselda',
-                    style: TextStyle(color: AppColors.white),
-                  )),
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(16),
-                    color: AppColors.secondary,
-                  ),
-                  width: 75,
-                  height: 75,
-                  child: const Center(child: Text('Dirtmounth', style: TextStyle(color: AppColors.white))),
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(16),
-                    color: AppColors.secondary,
-                  ),
-                  width: 75,
-                  height: 75,
-                  child: const Center(child: Text('Feminino', style: TextStyle(color: AppColors.white))),
-                )
-              ],
-            )
+            ...widget.characters.map((e) => SeparatedRow(
+                  separatorBuilder: () => const Gap(5),
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(16),
+                        color: AppColors.secondary,
+                      ),
+                      width: 75,
+                      height: 75,
+                      child: Center(
+                          child: Text(
+                        e.name,
+                        style: const TextStyle(color: AppColors.white),
+                      )),
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(16),
+                        color: AppColors.secondary,
+                      ),
+                      width: 75,
+                      height: 75,
+                      child: Center(child: Text(e.location, style: const TextStyle(color: AppColors.white))),
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(16),
+                        color: AppColors.secondary,
+                      ),
+                      width: 75,
+                      height: 75,
+                      child: Center(child: Text(e.gender, style: const TextStyle(color: AppColors.white))),
+                    )
+                  ],
+                )),
           ],
         ),
         const Gap(20),
